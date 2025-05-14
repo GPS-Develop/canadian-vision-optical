@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white flex flex-col">
       {/* Navigation */}
-      <nav className="flex items-center justify-between px-8 py-6 border-b border-gray-100">
+      <nav className="sticky top-0 z-30 flex items-center justify-between px-8 py-6 border-b border-gray-100 bg-white shadow-sm backdrop-blur bg-opacity-90">
         <div className="flex items-center gap-3">
           <Image
             src="/vellore-logo.png"
@@ -58,6 +58,53 @@ export default function Home() {
               style={{ objectFit: "cover", objectPosition: "center" }}
               priority
             />
+          </div>
+        </div>
+      </section>
+
+      {/* Visit Us Section */}
+      <section className="w-full bg-gray-50 py-16 px-4 flex flex-col items-center justify-center">
+        <h2 className="text-3xl font-bold mb-8 text-center text-gray-900">Visit Us</h2>
+        <div className="flex flex-col md:flex-row gap-10 w-full max-w-5xl items-center justify-center">
+          {/* Map */}
+          <div className="w-full md:w-1/2 h-[300px] rounded-2xl overflow-hidden shadow-lg border border-gray-200">
+            <iframe
+              src="https://www.google.com/maps?q=10385+Weston+Rd,+Vaughan,+ON+L4H+3T4,+Canada&output=embed"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Vellore Optical Location"
+            />
+          </div>
+          {/* Store Info */}
+          <div className="w-full md:w-1/2 flex flex-col gap-4 text-gray-800 text-lg">
+            <div>
+              <span className="font-semibold">Located in:</span> Canada Star Plaza
+            </div>
+            <div>
+              <span className="font-semibold">Address:</span> 10385 Weston Rd, Vaughan, ON L4H 3T4
+            </div>
+            <div>
+              <span className="font-semibold">Phone:</span> <a href="tel:13654187055" className="text-blue-600 hover:underline">(365) 418-7055</a>
+            </div>
+            <div>
+              <span className="font-semibold">Appointments:</span> <a href="https://velloreoptical.com" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">velloreoptical.com</a>
+            </div>
+            <div>
+              <span className="font-semibold">Hours:</span>
+              <ul className="ml-4 mt-1 text-base">
+                <li>Monday: 11 a.m.–6:30 p.m.</li>
+                <li>Tuesday: 11 a.m.–6:30 p.m.</li>
+                <li>Wednesday: 11 a.m.–6:30 p.m.</li>
+                <li>Thursday: 11 a.m.–7:30 p.m.</li>
+                <li>Friday: 11 a.m.–5:30 p.m.</li>
+                <li>Saturday: 11 a.m.–5 p.m.</li>
+                <li>Sunday: Closed</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
