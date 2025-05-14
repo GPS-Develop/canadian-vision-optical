@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://velloreoptical.com
+
+# Sitemaps
+Sitemap: https://velloreoptical.com/sitemap.xml
