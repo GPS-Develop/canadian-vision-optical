@@ -20,6 +20,9 @@ export default function NavBar() {
         </Link>
       </div>
       <div className="flex items-center gap-6">
+        <Link href="/eyewear-tips" className="text-gray-700 hover:text-black font-medium transition-colors">
+          Eyewear Tips
+        </Link>
         <a 
           href="https://www.instagram.com/velloreoptical/" 
           target="_blank" 
