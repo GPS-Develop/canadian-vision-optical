@@ -3,6 +3,20 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { FaceLandmarker, FilesetResolver } from "@mediapipe/tasks-vision";
 
+// A custom hook to detect screen size
+function useWindowSize() {
+  const [size, setSize] = useState([0, 0]);
+  useEffect(() => {
+    function updateSize() {
+      setSize([window.innerWidth, window.innerHeight]);
+    }
+    window.addEventListener('resize', updateSize);
+    updateSize();
+    return () => window.removeEventListener('resize', updateSize);
+  }, []);
+  return size;
+}
+
 interface Frame {
   id: string;
   name: string;
@@ -37,6 +51,9 @@ export default function VirtualTryOn() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number | undefined>(undefined);
   
+  const [width] = useWindowSize();
+  const isMobile = width < 1024; // Tailwind's 'lg' breakpoint
+
   const [faceLandmarker, setFaceLandmarker] = useState<FaceLandmarker | null>(null);
   const [isLoadingModel, setIsLoadingModel] = useState(true);
   const [isStreaming, setIsStreaming] = useState(false);
@@ -179,11 +196,11 @@ export default function VirtualTryOn() {
     if (!faceLandmarker) return;
     setError(null);
 
-    // Optimized for mobile: use a lower resolution
+    // Optimized for device: vertical for mobile, horizontal for desktop
     const constraints = {
       video: {
-        width: { ideal: 640 },
-        height: { ideal: 480 },
+        width: { ideal: isMobile ? 480 : 640 },
+        height: { ideal: isMobile ? 640 : 480 },
         facingMode: 'user'
       }
     };
@@ -244,8 +261,8 @@ export default function VirtualTryOn() {
       <div className="w-full lg:w-2/3 flex flex-col items-center">
         <div className="relative bg-white rounded-2xl shadow-xl p-4 sm:p-6 mb-6 w-full">
           <div className="relative w-full aspect-[4/3]">
-            <video ref={videoRef} className="absolute inset-0 w-full h-full rounded-lg" playsInline autoPlay muted />
-            <canvas ref={canvasRef} className="absolute inset-0 w-full h-full rounded-lg" />
+            <video ref={videoRef} className="absolute inset-0 w-full h-full rounded-lg transform scale-x-[-1]" playsInline autoPlay muted />
+            <canvas ref={canvasRef} className="absolute inset-0 w-full h-full rounded-lg transform scale-x-[-1]" />
             
             {isLoadingModel && (
               <div className="absolute inset-0 flex items-center justify-center bg-gray-100 bg-opacity-80 rounded-lg">
