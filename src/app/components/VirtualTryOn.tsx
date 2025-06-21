@@ -94,6 +94,12 @@ export default function VirtualTryOn() {
 
     const video = videoRef.current;
     if (video.currentTime !== lastVideoTimeRef.current) {
+      // Ensure canvas resolution matches video feed
+      if (canvasRef.current && (canvasRef.current.width !== video.videoWidth || canvasRef.current.height !== video.videoHeight)) {
+        canvasRef.current.width = video.videoWidth;
+        canvasRef.current.height = video.videoHeight;
+      }
+
       const results = faceLandmarker.detectForVideo(video, Date.now());
       lastVideoTimeRef.current = video.currentTime;
 
@@ -173,10 +179,17 @@ export default function VirtualTryOn() {
     if (!faceLandmarker) return;
     setError(null);
 
+    // Optimized for mobile: use a lower resolution
+    const constraints = {
+      video: {
+        width: { ideal: 640 },
+        height: { ideal: 480 },
+        facingMode: 'user'
+      }
+    };
+
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ 
-        video: { width: { ideal: 640 }, height: { ideal: 480 } } 
-      });
+      const stream = await navigator.mediaDevices.getUserMedia(constraints);
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
         videoRef.current.onloadedmetadata = () => {
@@ -226,13 +239,13 @@ export default function VirtualTryOn() {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row gap-8 items-start justify-center">
+    <div className="flex flex-col lg:flex-row gap-8 items-start justify-center w-full">
       {/* Camera and Canvas Section */}
-      <div className="flex-1 flex flex-col items-center">
-        <div className="relative bg-white rounded-2xl shadow-xl p-6 mb-6">
-          <div className="relative">
-            <video ref={videoRef} className="hidden" />
-            <canvas ref={canvasRef} width={640} height={480} className="border-2 border-gray-300 rounded-lg bg-gray-100" />
+      <div className="w-full lg:w-2/3 flex flex-col items-center">
+        <div className="relative bg-white rounded-2xl shadow-xl p-4 sm:p-6 mb-6 w-full">
+          <div className="relative w-full aspect-[4/3]">
+            <video ref={videoRef} className="absolute inset-0 w-full h-full rounded-lg" playsInline autoPlay muted />
+            <canvas ref={canvasRef} className="absolute inset-0 w-full h-full rounded-lg" />
             
             {isLoadingModel && (
               <div className="absolute inset-0 flex items-center justify-center bg-gray-100 bg-opacity-80 rounded-lg">
@@ -255,23 +268,23 @@ export default function VirtualTryOn() {
         </div>
 
         {/* Camera Controls */}
-        <div className="flex gap-4 mb-6">
+        <div className="flex gap-2 sm:gap-4 mb-6 flex-wrap justify-center">
           <button
             onClick={startCamera}
             disabled={isLoadingModel || isStreaming}
-            className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+            className="px-4 py-2 sm:px-6 sm:py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors text-sm sm:text-base"
           >
             {isLoadingModel ? 'Loading...' : 'Start Camera'}
           </button>
           <button
             onClick={stopCamera}
             disabled={!isStreaming}
-            className="px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+            className="px-4 py-2 sm:px-6 sm:py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors text-sm sm:text-base"
           >
             Stop Camera
           </button>
           {isStreaming && selectedFrame && (
-            <button onClick={captureImage} className="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+            <button onClick={captureImage} className="px-4 py-2 sm:px-6 sm:py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm sm:text-base">
               📸 Capture
             </button>
           )}
@@ -285,10 +298,10 @@ export default function VirtualTryOn() {
       </div>
 
       {/* Frame Selection Section */}
-      <div className="lg:w-80 bg-white rounded-2xl shadow-xl p-6">
+      <div className="w-full lg:w-1/3 bg-white rounded-2xl shadow-xl p-6">
         <h3 className="text-xl font-bold mb-4 text-gray-900">Select Frames</h3>
         
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-2 gap-4">
           {frames.map((frame) => (
             <button
               key={frame.id}
