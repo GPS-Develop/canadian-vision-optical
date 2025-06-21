@@ -21,6 +21,7 @@ interface Frame {
   id: string;
   name: string;
   imageUrl: string;
+  scaleFactor?: number; // Optional: custom scale factor for this specific frame
 }
 
 const frames: Omit<Frame, 'position'>[] = [
@@ -28,21 +29,36 @@ const frames: Omit<Frame, 'position'>[] = [
     id: '1',
     name: 'Classic Round',
     imageUrl: '/frames/classic-round.png',
-  },
-  {
-    id: '2',
-    name: 'Modern Square',
-    imageUrl: '/frames/modern-square.svg',
+    scaleFactor: 1.8,
   },
   {
     id: '3',
-    name: 'Aviator Style',
+    name: 'Aviator Gold',
     imageUrl: '/frames/ray-ban.png',
   },
   {
     id: '4',
-    name: 'Cat Eye',
-    imageUrl: '/frames/cat-eye.svg',
+    name: 'Sleek Cat Eye',
+    imageUrl: '/frames/vecteezy-sunglasses.png',
+    scaleFactor: 1.8,
+  },
+  {
+    id: '5',
+    name: 'Round Tortoise',
+    imageUrl: '/frames/round-glasses.png',
+    scaleFactor: 1.4,
+  },
+  {
+    id: '6',
+    name: 'Aviator Black',
+    imageUrl: '/frames/ray-ban2.0.png',
+    scaleFactor: 1.6,
+  },
+  {
+    id: '7',
+    name: 'Dark Sunglasses',
+    imageUrl: '/frames/sunglasses.png',
+    scaleFactor: 1.6,
   }
 ];
 
@@ -148,7 +164,8 @@ export default function VirtualTryOn() {
             Math.pow((rightEye.y - leftEye.y) * videoHeight, 2)
           );
 
-          const glassesWidth = eyeDistance * 2.5; // Adjust this multiplier for a better fit
+          // Use the custom scale factor if it exists, otherwise use a default
+          const glassesWidth = eyeDistance * (selectedFrame?.scaleFactor || 2.5);
           const scale = glassesWidth / frameImage.width;
 
           // Calculate rotation
@@ -174,7 +191,7 @@ export default function VirtualTryOn() {
     }
 
     animationRef.current = requestAnimationFrame(predictWebcam);
-  }, [faceLandmarker, isStreaming, frameImage]);
+  }, [faceLandmarker, isStreaming, frameImage, selectedFrame]);
 
   useEffect(() => {
     if (isStreaming) {
