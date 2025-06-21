@@ -23,6 +23,9 @@ export default function NavBar() {
         <Link href="/eyewear-tips" className="text-gray-700 hover:text-black font-medium transition-colors">
           Eyewear Tips
         </Link>
+        <Link href="/virtual-try-on" className="text-gray-700 hover:text-black font-medium transition-colors">
+          Virtual Try-On
+        </Link>
         <a 
           href="https://www.instagram.com/velloreoptical/" 
           target="_blank" 

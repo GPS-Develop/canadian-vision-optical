@@ -18,6 +18,9 @@ export default function Home() {
             <Link href="/book-appointment">
               <button className="px-8 py-3 bg-black text-white rounded-full text-lg font-medium shadow-lg transition-transform duration-200 hover:bg-gray-900 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-black">Book Appointment</button>
             </Link>
+            <Link href="/virtual-try-on">
+              <button className="px-8 py-3 bg-white text-black border-2 border-black rounded-full text-lg font-medium shadow-lg transition-transform duration-200 hover:bg-gray-50 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-black">Virtual Try-On</button>
+            </Link>
           </div>
         </div>
         {/* Product Image */}

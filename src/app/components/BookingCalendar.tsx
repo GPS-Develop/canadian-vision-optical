@@ -5,7 +5,9 @@ import { useRouter } from 'next/navigation';
 
 declare global {
   interface Window {
-    Calendly: any;
+    Calendly: {
+      initInlineWidget: (options: { url: string; parentElement: HTMLElement }) => void;
+    };
   }
 }
 
