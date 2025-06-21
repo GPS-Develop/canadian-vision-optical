@@ -9,14 +9,14 @@ export default function NavBar() {
       <div className="flex items-center gap-3">
         <Link href="/" className="flex items-center gap-3 group">
           <Image
-            src="/vellore-logo.png"
-            alt="Vellore Optical Logo"
+            src="/canadian-vision-logo.png"
+            alt="Canadian Vision Optical Logo"
             width={40}
             height={40}
             className="rounded-full bg-black group-hover:opacity-80 transition"
             priority
           />
-          <span className="text-2xl font-semibold tracking-tight text-gray-900 group-hover:text-gray-700 transition">Vellore Optical</span>
+          <span className="text-2xl font-semibold tracking-tight text-gray-900 group-hover:text-gray-700 transition">Canadian Vision Opticals</span>
         </Link>
       </div>
       <div className="flex items-center gap-6">
@@ -27,7 +27,7 @@ export default function NavBar() {
           Virtual Try-On
         </Link>
         <a 
-          href="https://www.instagram.com/velloreoptical/" 
+          href="https://www.instagram.com/canadianvisionopticals/" 
           target="_blank" 
           rel="noopener noreferrer"
           className="transition-transform duration-200 drop-shadow-lg hover:scale-110"

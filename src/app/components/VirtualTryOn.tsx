@@ -267,7 +267,7 @@ export default function VirtualTryOn() {
     if (!canvas) return;
 
     const link = document.createElement('a');
-    link.download = 'vellore-optical-tryon.png';
+    link.download = 'canadian-vision-opticals-tryon.png';
     link.href = canvas.toDataURL();
     link.click();
   };

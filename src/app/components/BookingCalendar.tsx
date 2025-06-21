@@ -40,7 +40,7 @@ export default function BookingCalendar() {
     <div className="w-full h-[700px] flex flex-col items-center justify-center">
       <div
         className="calendly-inline-widget"
-        data-url="https://calendly.com/infovelloreoptical?hide_gdpr_banner=1"
+        data-url="https://calendly.com/infocanadianvisionoptical?hide_gdpr_banner=1"
         style={{ minWidth: '320px', height: '600px' }}
       />
       {scheduled && (

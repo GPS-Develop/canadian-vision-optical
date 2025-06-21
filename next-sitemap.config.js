@@ -1,4 +1,4 @@
 module.exports = {
-  siteUrl: 'https://velloreoptical.com',
+  siteUrl: 'https://canadianvisionopticals.com',
   generateRobotsTxt: true,
 }; 

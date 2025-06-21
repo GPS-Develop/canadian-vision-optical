@@ -15,19 +15,19 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Vellore Optical | Premium Eyewear in Vaughan, ON",
-  description: "Vellore Optical offers premium eyeglasses and direct insurance billing in Vaughan, Ontario. Book your appointment today!",
+  title: "Canadian Vision Opticals | Premium Eyewear in St. Catharines, ON",
+  description: "Canadian Vision Opticals offers premium eyeglasses and direct insurance billing in St. Catharines, Ontario. Book your appointment today!",
   openGraph: {
-    title: "Vellore Optical | Premium Eyewear in Vaughan, ON",
-    description: "Vellore Optical offers premium eyeglasses and direct insurance billing in Vaughan, Ontario. Book your appointment today!",
-    url: "https://velloreoptical.com",
-    siteName: "Vellore Optical",
+    title: "Canadian Vision Opticals | Premium Eyewear in St. Catharines, ON",
+    description: "Canadian Vision Opticals offers premium eyeglasses and direct insurance billing in St. Catharines, Ontario. Book your appointment today!",
+    url: "https://canadianvisionopticals.com",
+    siteName: "Canadian Vision Opticals",
     images: [
       {
-        url: "/vellore-logo.png",
+        url: "/canadian-vision-logo.png",
         width: 800,
         height: 600,
-        alt: "Vellore Optical Logo"
+        alt: "Canadian Vision Opticals Logo"
       },
     ],
     locale: "en_CA",
@@ -35,10 +35,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Vellore Optical | Premium Eyewear in Vaughan, ON",
-    description: "Vellore Optical offers premium eyeglasses and direct insurance billing in Vaughan, Ontario. Book your appointment today!",
-    images: ["/vellore-logo.png"],
-    site: "@velloreoptical",
+    title: "Canadian Vision Opticals | Premium Eyewear in St. Catharines, ON",
+    description: "Canadian Vision Opticals offers premium eyeglasses and direct insurance billing in St. Catharines, Ontario. Book your appointment today!",
+    images: ["/canadian-vision-logo.png"],
+    site: "@canadianvisionopticals",
   },
 };
 

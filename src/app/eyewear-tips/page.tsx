@@ -22,11 +22,11 @@ const posts = [
   {
     title: "How to Clean Your Glasses Without Scratching Them",
     slug: "clean-glasses-without-scratching",
-    excerpt: "Keep your glasses crystal clear and scratch-free with these expert tips from Vellore Optical.",
+    excerpt: "Keep your glasses crystal clear and scratch-free with these expert tips from Canadian Vision Opticals.",
     content: `
       <h2>🕶️ How to Clean Your Glasses Without Scratching Them</h2>
-      <p><i>By Vellore Optical — Vaughan's Trusted Eyewear Experts</i></p>
-      <p>Keeping your glasses clean doesn't just improve your vision, it also helps them last longer and look their best. But cleaning them the wrong way can cause scratches, streaks, or even permanent damage. Here's a quick and easy guide to cleaning your glasses the right way, recommended by our team at Vellore Optical.</p>
+      <p><i>By Canadian Vision Opticals — St. Catharines' Trusted Eyewear Experts</i></p>
+      <p>Keeping your glasses clean doesn't just improve your vision, it also helps them last longer and look their best. But cleaning them the wrong way can cause scratches, streaks, or even permanent damage. Here's a quick and easy guide to cleaning your glasses the right way, recommended by our team at Canadian Vision Opticals.</p>
       <hr/>
       <h3>✅ What You'll Need:</h3>
       <ul>
@@ -58,8 +58,8 @@ const posts = [
         <li>Replace your microfiber cloth every few months.</li>
       </ul>
       <hr/>
-      <h3>👁️ Need Help? Stop by Vellore Optical!</h3>
-      <p>Not sure if your glasses are scratched, misaligned, or due for an upgrade? We're happy to help. Stop by our Vaughan location or <a href="/book-appointment" class="text-blue-600 underline">book an appointment online</a>.</p>
+      <h3>👁️ Need Help? Stop by Canadian Vision Opticals!</h3>
+      <p>Not sure if your glasses are scratched, misaligned, or due for an upgrade? We're happy to help. Stop by our St. Catharines location or <a href="/book-appointment" class="text-blue-600 underline">book an appointment online</a>.</p>
     `
   },
   // Add more posts here as needed

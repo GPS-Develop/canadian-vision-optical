@@ -12,7 +12,7 @@ export default function Home() {
             Vision <span className="text-gray-400 font-light">Perfected</span>
           </h1>
           <p className="text-lg md:text-xl text-gray-600 max-w-lg">
-            Experience the perfect blend of style and precision at Vellore Optical. From classic frames to contemporary designs, we bring you eyewear that defines elegance and clarity.
+            Experience the perfect blend of style and precision at Canadian Vision Opticals. From classic frames to contemporary designs, we bring you eyewear that defines elegance and clarity.
           </p>
           <div className="flex gap-4">
             <Link href="/book-appointment">
@@ -60,36 +60,42 @@ export default function Home() {
           {/* Map */}
           <div className="w-full md:w-1/2 h-[300px] rounded-2xl overflow-hidden shadow-lg border border-gray-200">
             <iframe
-              src="https://www.google.com/maps?q=10385+Weston+Rd,+Vaughan,+ON+L4H+3T4,+Canada&output=embed"
+              src="https://www.google.com/maps?q=221+Glendale+Ave+Unit+%231006,+St.+Catharines,+ON+L2T+2K9,+Canada&output=embed"
               width="100%"
               height="100%"
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Vellore Optical Location"
+              title="Canadian Vision Opticals Location"
             />
           </div>
           {/* Store Info */}
           <div className="w-full md:w-1/2 flex flex-col gap-4 text-gray-800 text-lg">
             <div>
-              <span className="font-semibold">Located in:</span> Canada Star Plaza
+              <span className="font-semibold">Located in:</span> St. Catharines
             </div>
             <div>
-              <span className="font-semibold">Address:</span> 10385 Weston Rd, Vaughan, ON L4H 3T4
+              <span className="font-semibold">Address:</span> 221 Glendale Ave Unit # 1006, St. Catharines, ON L2T 2K9
             </div>
             <div>
-              <span className="font-semibold">Phone:</span> <a href="tel:13654187055" className="text-blue-600 hover:underline">(365) 418-7055</a>
+              <span className="font-semibold">Phone:</span> <a href="tel:19059889797" className="text-blue-600 hover:underline">(905) 988-9797</a>
+            </div>
+            <div>
+              <span className="font-semibold">Fax:</span> <a href="tel:19059889780" className="text-blue-600 hover:underline">(905) 988-9780</a>
+            </div>
+            <div>
+              <span className="font-semibold">Email:</span> <a href="mailto:canadianvisionopticals@gmail.com" className="text-blue-600 hover:underline">canadianvisionopticals@gmail.com</a>
             </div>
             <div>
               <span className="font-semibold">Hours:</span>
               <ul className="ml-4 mt-1 text-base">
-                <li>Monday: 11 a.m.–6:30 p.m.</li>
-                <li>Tuesday: 11 a.m.–6:30 p.m.</li>
-                <li>Wednesday: 11 a.m.–6:30 p.m.</li>
-                <li>Thursday: 11 a.m.–7:30 p.m.</li>
-                <li>Friday: 11 a.m.–5:30 p.m.</li>
-                <li>Saturday: 11 a.m.–5 p.m.</li>
+                <li>Monday: 10 a.m.–7 p.m.</li>
+                <li>Tuesday: 10 a.m.–7 p.m.</li>
+                <li>Wednesday: 10 a.m.–7 p.m.</li>
+                <li>Thursday: 10 a.m.–8 p.m.</li>
+                <li>Friday: 10 a.m.–6 p.m.</li>
+                <li>Saturday: 10 a.m.–5 p.m.</li>
                 <li>Sunday: Closed</li>
               </ul>
             </div>
@@ -101,11 +107,11 @@ export default function Home() {
       <footer className="text-center text-gray-400 text-sm py-8 border-t border-gray-100">
         <div className="max-w-4xl mx-auto px-8">
           <div className="flex justify-center gap-8 mb-4">
-            <a href="https://www.instagram.com/velloreoptical/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-600 transition-colors">
+            <a href="https://www.instagram.com/canadianvisionopticals/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-600 transition-colors">
               Follow us on Instagram
             </a>
           </div>
-          <p>&copy; {new Date().getFullYear()} Vellore Optical. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Canadian Vision Opticals. All rights reserved.</p>
         </div>
       </footer>
     </div>
