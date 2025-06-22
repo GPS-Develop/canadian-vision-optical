@@ -12,7 +12,7 @@ export default function BookAppointment() {
           <AnimationWrapper>
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-center mb-6 tracking-tight">
               Book Your <span className="text-blue-400">Appointment</span>
-            </h1>
+        </h1>
           </AnimationWrapper>
           <AnimationWrapper delay={0.1}>
             <p className="text-xl text-gray-300 text-center max-w-3xl mx-auto leading-relaxed">
@@ -122,7 +122,7 @@ export default function BookAppointment() {
                   <p className="text-gray-600">Choose a date and time that works best for you</p>
                 </div>
                 <div className="p-4 sm:p-6">
-                  <BookingCalendar />
+        <BookingCalendar />
                 </div>
               </div>
             </AnimationWrapper>

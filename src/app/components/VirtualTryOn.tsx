@@ -2,8 +2,6 @@
 
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { FaceLandmarker, FilesetResolver } from "@mediapipe/tasks-vision";
-import { AnimationWrapper } from "./AnimationWrapper";
-import Image from 'next/image';
 
 // A custom hook to detect screen size
 function useWindowSize() {
@@ -279,24 +277,25 @@ export default function VirtualTryOn() {
       {/* Camera and Canvas Section */}
       <div className="w-full lg:w-2/3 flex flex-col items-center">
         <div className="relative bg-white rounded-2xl shadow-xl p-4 sm:p-6 mb-6 w-full">
-          <div className="relative w-full aspect-[4/3] bg-gray-900 rounded-lg overflow-hidden shadow-lg border-2 border-gray-700">
-            <video ref={videoRef} className="w-full h-full object-cover" autoPlay playsInline muted></video>
-            <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full"></canvas>
-            {selectedFrame && (
-              <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center pointer-events-none">
-                <Image
-                  src={selectedFrame.imageUrl}
-                  alt="Selected frame"
-                  width={300} // Adjust width as needed
-                  height={150} // Adjust height as needed
-                  className="opacity-90 object-contain"
-                  style={{
-                    transform: 'translate(-50%, -50%)',
-                    position: 'absolute',
-                    // Dynamic properties will be updated via JS
-                  }}
-                  id="vto-frame-img"
-                />
+          <div className="relative w-full aspect-[4/3]">
+            <video ref={videoRef} className="absolute inset-0 w-full h-full rounded-lg transform scale-x-[-1]" playsInline autoPlay muted />
+            <canvas ref={canvasRef} className="absolute inset-0 w-full h-full rounded-lg transform scale-x-[-1]" />
+            
+            {isLoadingModel && (
+              <div className="absolute inset-0 flex items-center justify-center bg-gray-100 bg-opacity-80 rounded-lg">
+                <div className="text-center">
+                  <div className="text-xl mb-2">🚀</div>
+                  <p className="text-gray-700 font-medium">Loading AI model...</p>
+                </div>
+              </div>
+            )}
+
+            {!isStreaming && !isLoadingModel && (
+              <div className="absolute inset-0 flex items-center justify-center bg-gray-100 rounded-lg">
+                <div className="text-center">
+                  <div className="text-6xl mb-4">📷</div>
+                  <p className="text-gray-600">Click &quot;Start Camera&quot; to begin</p>
+                </div>
               </div>
             )}
           </div>
@@ -349,12 +348,10 @@ export default function VirtualTryOn() {
               } ${!isStreaming ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-md'}`}
             >
               <div className="w-full h-16 bg-gray-100 rounded mb-2 flex items-center justify-center overflow-hidden">
-                <Image 
+                <img 
                   src={frame.imageUrl} 
                   alt={frame.name}
-                  fill
-                  sizes="(max-width: 640px) 33vw, (max-width: 768px) 25vw, 20vw"
-                  className="object-contain bg-white p-2"
+                  className="w-full h-full object-contain"
                 />
               </div>
               <p className="text-sm font-medium text-gray-900">{frame.name}</p>
