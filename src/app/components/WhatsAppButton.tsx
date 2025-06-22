@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 export default function WhatsAppButton() {
   return (
     <div className="fixed bottom-24 right-5 z-50">
-      <Link href="https://wa.me/19059889797" target="_blank">
+      <Link href="https://wa.me/7695673765?text=Hi%20Canadian%20Vision%20Opticals!%20I%20have%20a%20question." target="_blank">
         <motion.div
           className="bg-green-500 text-white rounded-full p-4 shadow-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
           whileHover={{ scale: 1.1 }}
