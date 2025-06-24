@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { FaceLandmarker, FilesetResolver } from "@mediapipe/tasks-vision";
+import { usePathname } from 'next/navigation';
 
 // A custom hook to detect screen size
 function useWindowSize() {
@@ -66,6 +67,7 @@ export default function VirtualTryOn() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number | undefined>(undefined);
+  const streamRef = useRef<MediaStream | null>(null);
   
   const [width] = useWindowSize();
   const isMobile = width < 1024; // Tailwind's 'lg' breakpoint
@@ -224,6 +226,7 @@ export default function VirtualTryOn() {
 
     try {
       const stream = await navigator.mediaDevices.getUserMedia(constraints);
+      streamRef.current = stream;
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
         videoRef.current.onloadedmetadata = () => {
@@ -238,10 +241,19 @@ export default function VirtualTryOn() {
   };
 
   const stopCamera = () => {
+    console.log("🔴 stopCamera called");
     setIsStreaming(false);
-    if (videoRef.current && videoRef.current.srcObject) {
-      const stream = videoRef.current.srcObject as MediaStream;
-      stream.getTracks().forEach(track => track.stop());
+    if (streamRef.current) {
+      console.log("✅ Found persistent stream, stopping...");
+      streamRef.current.getTracks().forEach(track => {
+        console.log("Stopping track:", track);
+        track.stop();
+      });
+      streamRef.current = null;
+    } else {
+      console.log("No persistent stream found to stop");
+    }
+    if (videoRef.current) {
       videoRef.current.srcObject = null;
     }
     // Clear canvas
@@ -259,6 +271,32 @@ export default function VirtualTryOn() {
       faceLandmarker?.close();
     };
   }, [faceLandmarker]);
+
+  const pathname = usePathname();
+  const previousPathnameRef = useRef(pathname);
+
+useEffect(() => {
+  if (previousPathnameRef.current !== pathname) {
+    console.log("📦 Route changed from", previousPathnameRef.current, "to", pathname);
+    
+    // Force stop all media streams from any video elements
+    const videos = document.querySelectorAll('video');
+    videos.forEach((video) => {
+      const stream = (video as HTMLVideoElement).srcObject as MediaStream | null;
+      if (stream) {
+        stream.getTracks().forEach(track => {
+          console.log("Force stopping track:", track);
+          track.stop();
+        });
+        (video as HTMLVideoElement).srcObject = null;
+      }
+    });
+
+    stopCamera();
+    faceLandmarker?.close();
+    previousPathnameRef.current = pathname;
+  }
+}, [pathname, faceLandmarker]);
 
 
   // ... (captureImage function remains similar)
