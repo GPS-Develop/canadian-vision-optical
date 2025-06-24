@@ -241,18 +241,13 @@ export default function VirtualTryOn() {
   };
 
   const stopCamera = () => {
-    console.log("🔴 stopCamera called");
     setIsStreaming(false);
     if (streamRef.current) {
-      console.log("✅ Found persistent stream, stopping...");
       streamRef.current.getTracks().forEach(track => {
-        console.log("Stopping track:", track);
         track.stop();
       });
       streamRef.current = null;
-    } else {
-      console.log("No persistent stream found to stop");
-    }
+    } 
     if (videoRef.current) {
       videoRef.current.srcObject = null;
     }
@@ -277,15 +272,12 @@ export default function VirtualTryOn() {
 
 useEffect(() => {
   if (previousPathnameRef.current !== pathname) {
-    console.log("📦 Route changed from", previousPathnameRef.current, "to", pathname);
-    
     // Force stop all media streams from any video elements
     const videos = document.querySelectorAll('video');
     videos.forEach((video) => {
       const stream = (video as HTMLVideoElement).srcObject as MediaStream | null;
       if (stream) {
         stream.getTracks().forEach(track => {
-          console.log("Force stopping track:", track);
           track.stop();
         });
         (video as HTMLVideoElement).srcObject = null;
